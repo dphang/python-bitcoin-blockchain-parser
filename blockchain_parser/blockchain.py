@@ -17,7 +17,7 @@ from .block import Block
 
 
 # Constant separating blocks in the .blk files
-BITCOIN_CONSTANT = b"\xf9\xbe\xb4\xd9"
+BLOCKNET_CONSTANT = b"\xa1\xa0\xa2\xa3"
 
 
 def get_files(path):
@@ -47,7 +47,7 @@ def get_blocks(blockfile):
         offset = 0
         block_count = 0
         while offset < (length - 4):
-            if raw_data[offset:offset+4] == BITCOIN_CONSTANT:
+            if raw_data[offset:offset+4] == BLOCKNET_CONSTANT:
                 offset += 4
                 size = struct.unpack("<I", raw_data[offset:offset+4])[0]
                 offset += 4 + size
